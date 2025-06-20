@@ -102,5 +102,6 @@ The MoviesDatabase API follows standard HTTP status codes to indicate success or
 {
   "message": "You have exceeded your rate limit"
 }
-### Usage Limits and Best Practices
 ```
+
+### Usage Limits and Best Practices
