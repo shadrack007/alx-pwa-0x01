@@ -22,7 +22,7 @@ interface ReleaseYear {
 }
 
 export interface MovieProps {
-  id: string;
+  id?: string;
   posterImage: string;
   title: string;
   releaseYear: string;
