@@ -22,7 +22,7 @@ const Header: React.FC = () => {
             href="/movies"
             className="hover:text-[#e2d609] px-4 md:px-8 text-xl transition-colors duration-300 font-semibold"
           >
-            Home
+            Movies
           </Link>
 
           <Link
