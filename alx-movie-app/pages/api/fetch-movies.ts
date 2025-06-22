@@ -9,19 +9,29 @@ export default async function handler(
     const { year, page, genre } = request.body;
 
     const date = new Date();
-    const resp = await fetch(
-      `
-            https://moviesdatabase.p.rapidapi.com/titles?year==${
-              year || date.getFullYear()
-            }&sort=year.decr&limit=12&page=${page}&${genre && `genre=${genre}`}
-            `,
-      {
-        headers: {
-          "x-rapidapi-host": "moviesdatabase.p.rapidapi.com",
-          "x-rapidapi-key": `${process.env.MOVIE_API_KEY}`,
-        },
-      }
-    );
+
+    const actualYear = year || date.getFullYear();
+
+    const queryParams = new URLSearchParams({
+      year: actualYear.toString(),
+      sort: "year.decr",
+      limit: "12",
+      page: page.toString(),
+    });
+
+    if (genre) {
+      queryParams.append("genre", genre);
+    }
+
+    const url = `https://moviesdatabase.p.rapidapi.com/titles?${queryParams.toString()}`;
+
+    const resp = await fetch(url, {
+      headers: {
+        "x-rapidapi-key": `${process.env.MOVIE_API_KEY}`,
+      },
+    });
+
+    console.log("response", resp);
 
     if (!resp.ok) throw new Error("Failed to fetch movies");
 
