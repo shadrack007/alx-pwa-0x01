@@ -37,7 +37,6 @@ const Movies: React.FC<MProps> = () => {
 
     const data = await response.json();
     const results = data.movies;
-    console.log(results);
     setMovies(results);
     setLoading(false);
   }, [page, year, genre]);
